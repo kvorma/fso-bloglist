@@ -1,7 +1,9 @@
 name: Lint and Test app
 on:
   workflow_call:
-
+    secrets:
+      MONGODB_URI:
+        required: true
 jobs:
   unit-test:
     name: Lint and unit test
