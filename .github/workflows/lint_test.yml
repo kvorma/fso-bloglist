@@ -13,6 +13,7 @@ jobs:
           node-version: '24'
       - name: Install dependencies
         run: npm install
+      - run: node -e "console.log(process.env)"
       - name: Lint
         run: npm run lint
       - name: Test

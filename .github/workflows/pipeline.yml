@@ -15,14 +15,13 @@ env:
 
 jobs:
   env_var: # workaround for env not being available in job context
-    name: Expose DEPLOY to job context
+    name: Expose env to job context
     runs-on: ubuntu-latest
     outputs:
       deploy: ${{ env.DEPLOY }}
-      app_name: ${{ env.APP_NAME }}
+      app_name: ${{ env.APP_NAME }}      
     steps:
-      - run: node -e "console.log(process.env)"
-#      - run: echo "exposing env var DEPLOY=$DEPLOY"
+      - run: echo "exposing env vars"
 
 #  e2e-test:
 #    uses: ./.github/workflows/playwright.yml
