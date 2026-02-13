@@ -8,18 +8,18 @@ const prod = process.env.NODE_ENV === 'production'
 const db = test ? 'blogTest' : 'blogList'
 
 if (process.env.GITHUB_ACTIONS) {
-  dx.config({ path: '.env.github', silent: true })
+  dx.config({ path: '.env.github', quiet: true })
 } else if (process.env.FLY_APP_NAME) {
-  dx.config({ path: '.env.fly', silent: true })
+  dx.config({ path: '.env.fly', quiet: true })
 } else {
-  dx.config({ path: '.env', silent: true })
+  dx.config({ path: '.env', quiet: true })
 }
 
 const PORT = process.env.PORT || 3003
 const MONGODB_URI = process.env.MONGODB_URI + db
 const DEBUG_LEVEL = test || prod ? 0 : process.env.DEBUG_LEVEL || 0
 const QUIET = test ? true : process.env.QUIET || false
-if (DEBUG_LEVEL >= 0) {
+if (DEBUG_LEVEL > 0) {
   console.log('Config loaded:', { NODE_ENV: process.env.NODE_ENV, test, MONGODB_URI, PORT, DEBUG_LEVEL, QUIET })
 }
 

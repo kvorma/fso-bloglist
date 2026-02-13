@@ -46,28 +46,28 @@ jobs:
     if: needs.env_var.outputs.deploy == 'true'
     uses: ./.github/workflows/tag_release.yml
 
-  notify_success:
-    needs: deploy
-    name: send build success notification to Discord
-    runs-on: ubuntu-latest
-    steps:
-    - uses: sarisia/actions-status-discord@v1
-      with:
-        webhook: ${{ secrets.DISCORD_WEBHOOK }}
-        username: ${{ env.APP_NAME }} build bot
-        title: New ${{ env.APP_NAME }} version deployed
-        description: Go and grab some coffee
+  # notify_success:
+  #   needs: deploy
+  #   name: send build success notification to Discord
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: sarisia/actions-status-discord@v1
+  #     with:
+  #       webhook: ${{ secrets.DISCORD_WEBHOOK }}
+  #       username: ${{ env.APP_NAME }} build bot
+  #       title: New ${{ env.APP_NAME }} version deployed
+  #       description: Go and grab some coffee
 
-  notify_failure:
-    if: failure()
-    needs: deploy
-    name: send build failure notification to Discord
-    runs-on: ubuntu-latest
-    steps:
-    - uses: sarisia/actions-status-discord@v1
-      with:
-        webhook: ${{ secrets.DISCORD_WEBHOOK }}
-        username: ${{ env.APP_NAME }} build bot
-        status: Failure
-        title: Failed to deploy ${{ env.APP_NAME }}
-        description: Go and fix the build
+  # notify_failure:
+  #   if: failure()
+  #   needs: deploy
+  #   name: send build failure notification to Discord
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: sarisia/actions-status-discord@v1
+  #     with:
+  #       webhook: ${{ secrets.DISCORD_WEBHOOK }}
+  #       username: ${{ env.APP_NAME }} build bot
+  #       status: Failure
+  #       title: Failed to deploy ${{ env.APP_NAME }}
+  #       description: Go and fix the build

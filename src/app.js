@@ -3,6 +3,7 @@
 // (c) 2025 Kai Vorma
 
 const express = require('express')
+const cors = require('cors')
 const mongoose = require('mongoose')
 const config = require('./utils/config')
 const logger = require('./utils/logger')
@@ -12,6 +13,9 @@ const usersRouter = require('./controllers/usersApi')
 const loginRouter = require('./controllers/login')
 
 const app = express()
+
+// Adds headers: Access-Control-Allow-Origin: *
+app.use(cors())
 
 logger.debug('connecting to', config.MONGODB_URI)
 mongoose

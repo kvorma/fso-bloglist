@@ -1,9 +1,13 @@
 // Full Stack Open harjoitustyö
 // globaaleja asetuksia, apurutiineita
 
-const server = 'https://fso-bloglist-back.fly.dev/'
-const blogUrl = '/api/blogs'
-const loginUrl = '/api/login'
+let server = '/' 
+if (import.meta.env.PROD) {
+  server = 'https://fso-bloglist-back.fly.dev/'
+} 
+
+const blogUrl = `${server}api/blogs`
+const loginUrl = `${server}api/login`
 
 const loggedTag = 'loggedBlogListUser'
 
