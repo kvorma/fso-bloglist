@@ -4,7 +4,7 @@ const User = require('../models/user')
 const logger = require('../utils/logger')
 
 router.post('/reset', async (request, response) => {
-  logger.debug("Database reset called")
+  logger.debug('Database reset called')
 
   await Blog.deleteMany({})
   await User.deleteMany({})

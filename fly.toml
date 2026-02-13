@@ -1,15 +1,12 @@
-# fly.toml app configuration file generated for bloglist-snowy-pond-1697 on 2025-12-14T19:41:44+02:00
+# fly.toml app configuration file generated for fso-bloglist-back on 2026-02-13T09:30:14+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'bloglist-snowy-pond-1697'
+app = 'fso-bloglist-back'
 primary_region = 'arn'
 
 [build]
-
-[env]
-  PORT = "3003"
 
 [http_service]
   internal_port = 3003

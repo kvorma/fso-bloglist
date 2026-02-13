@@ -14,10 +14,10 @@ usersRouter.get('/', async (request, response) => {
 // stops at first error in the latter case
 
 usersRouter.post('/', async (request, response) => {
-  let savedUsers = [], newUsers = []
+  let newUsers = []
   const users = Array.isArray(request.body)
     ? request.body
-    : [ request.body ]
+    : [request.body]
 
   for (let u of users) {
     const { username, realname, password } = u
@@ -40,7 +40,7 @@ usersRouter.post('/', async (request, response) => {
     })
   }
   logger.debug('Inserting to database', newUsers)
-  savedUsers = await User.insertMany(newUsers)
+  const savedUsers = await User.insertMany(newUsers)
   response.status(201).json(savedUsers)
 })
 

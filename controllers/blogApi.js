@@ -28,8 +28,7 @@ blogsRouter.get('/:id', async (request, response) => {
 // add one or more blogs
 
 blogsRouter.post('/', middleware.userExtractor, async (request, response) => {
-  let savedBlogs = [],
-    newBlogs = []
+  let newBlogs = []
   const blogs = Array.isArray(request.body) ? request.body : [request.body]
 
   logger.debug('AddBlog: user =', request.username, 'token =', request.token)
@@ -51,7 +50,7 @@ blogsRouter.post('/', middleware.userExtractor, async (request, response) => {
     })
   }
   logger.debug2('Inserting blogs:', newBlogs)
-  savedBlogs = await Blog.insertMany(newBlogs)
+  const savedBlogs = await Blog.insertMany(newBlogs)
 
   // update owner document with new blogs
 

@@ -34,7 +34,7 @@ const errorHandler = (error, request, response, next) => {
   case 'TypeError':
   case 'SyntaxError': {
     // return response.status(400).json({ error: error.name, message: error.message })
-     return response.status(400).json({ error: error.message })
+    return response.status(400).json({ error: error.message })
   }
   case 'JsonWebTokenError': {
     return response.status(401).json({ error: 'Authorization token missing or invalid' })

@@ -20,22 +20,22 @@ const showInfo = async () => {
 const listEntries = async (format) => {
   const blogs = await BlogList.find({})
   switch (format) {
-    case 'raw':
-      console.log(blogs)
-      break
-    case 'json':
-      console.log(JSON.stringify(blogs, ['title', 'author', 'url', 'likes', 'comments'], 2))
-      break
-    default:
-      blogs.forEach((e) => {
-        console.log('Title:', e.title)
-        console.log('Author:', e.author)
-        console.log('url:', e.url)
-        console.log('likes:', e.likes)
-        console.log('Id:', e._id.toString())
-        console.log('Comments:', e.comments)
-        console.log('------')
-      })
+  case 'raw':
+    console.log(blogs)
+    break
+  case 'json':
+    console.log(JSON.stringify(blogs, ['title', 'author', 'url', 'likes', 'comments'], 2))
+    break
+  default:
+    blogs.forEach((e) => {
+      console.log('Title:', e.title)
+      console.log('Author:', e.author)
+      console.log('url:', e.url)
+      console.log('likes:', e.likes)
+      console.log('Id:', e._id.toString())
+      console.log('Comments:', e.comments)
+      console.log('------')
+    })
   }
   process.exit(0)
 }
@@ -95,28 +95,28 @@ const cmd = process.argv[2]
 const p1 = process.argv[3]
 
 switch (cmd) {
-  case 'info': {
-    showInfo()
-    break
+case 'info': {
+  showInfo()
+  break
+}
+case 'list': {
+  listEntries(p1)
+  break
+}
+case 'add': {
+  if (p1) {
+    addEntry(p1, process.argv[4], process.argv[5], process.argv[6])
+  } else {
+    addStdIn()
   }
-  case 'list': {
-    listEntries(p1)
-    break
-  }
-  case 'add': {
-    if (p1) {
-      addEntry(p1, process.argv[4], process.argv[5], process.argv[6])
-    } else {
-      addStdIn()
-    }
-    break
-  }
-  case 'delete': {
-    delEntries(process.argv.slice(3))
-    break
-  }
-  default: {
-    logger.error('unknown command', cmd)
-    process.exit(1)
-  }
+  break
+}
+case 'delete': {
+  delEntries(process.argv.slice(3))
+  break
+}
+default: {
+  logger.error('unknown command', cmd)
+  process.exit(1)
+}
 }
