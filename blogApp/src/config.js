@@ -1,6 +1,7 @@
 // Full Stack Open harjoitustyö
 // globaaleja asetuksia, apurutiineita
 
+const server = 'https://fso-bloglist-back.fly.dev/'
 const blogUrl = '/api/blogs'
 const loginUrl = '/api/login'
 
