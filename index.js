@@ -2,9 +2,9 @@
 // sovelluksen käynnistys
 // (c) 2025 Kai Vorma
 
-const app = require('./app') // varsinainen Express-sovellus
-const config = require('./utils/config')
-const logger = require('./utils/logger')
+const app = require('./src/app') // varsinainen Express-sovellus
+const config = require('./src/utils/config')
+const logger = require('./src/utils/logger')
 
 const db = config.MONGODB_URI
 const coll = db.substring(db.lastIndexOf('/') + 1)
