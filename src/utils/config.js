@@ -9,6 +9,8 @@ const db = test ? 'blogTest' : 'blogList'
 
 if (process.env.GITHUB_ACTIONS) {
   dx.config({ path: '.env.github', silent: true })
+} else if (process.env.FLY_APP_NAME) {
+  dx.config({ path: '.env.fly', silent: true })
 } else {
   dx.config({ path: '.env', silent: true })
 }
