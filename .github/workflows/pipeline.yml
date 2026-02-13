@@ -29,6 +29,8 @@ jobs:
   unit-test:
     name: Lint and unit test
     uses: ./.github/workflows/lint_test.yml
+    secrets:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
   
   deploy:    
     needs: [env_var, unit-test]
