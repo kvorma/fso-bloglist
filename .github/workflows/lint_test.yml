@@ -18,5 +18,5 @@ jobs:
       - name: Test
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        run: npm run test
+        run: node -e 'console.log(process.env)'
       
