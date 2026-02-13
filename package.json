@@ -1,16 +1,16 @@
 {
   "name": "bloglist",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "FullStackOpen 11.20",
   "license": "ISC",
   "author": "Kai Vorma",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node index.js",
-    "dev": "cross-env NODE_ENV=development node --watch index.js",
-    "test": "cross-env  NODE_ENV=test node --test --test-concurrency=1",
-    "start:test": "cross-env NODE_ENV=test node --watch index.js",
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development node --watch index.js",
+    "test": "NODE_ENV=test node --test --test-concurrency=1",
+    "start:test": "NODE_ENV=test node --watch index.js",
     "lint": "eslint .",
     "lintfix": "eslint --fix ."
   },
