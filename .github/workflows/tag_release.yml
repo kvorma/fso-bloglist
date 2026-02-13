@@ -1,0 +1,20 @@
+# bump version number
+
+name: Tag Release
+on:
+  workflow_call
+
+jobs:
+  tag_release:
+    name: Tag the release
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: "0"
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.75.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DEFAULT_BUMP: patch
+        TAG_PREFIX: v

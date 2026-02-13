@@ -3,11 +3,9 @@ const assert = require('node:assert')
 const { test, before, after, beforeEach, describe } = require('node:test')
 const mongoose = require('mongoose')
 const supertest = require('supertest')
-const app = require('../app')
+const app = require('../src/app')
 const helper = require('./test_helper')
-// const Blog = require('../models/blogList')
-// const User = require('../models/user')
-const config = require('../utils/config')
+const config = require('../src/utils/config')
 const api = supertest(app)
 
 before(() => {

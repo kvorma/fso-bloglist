@@ -1,0 +1,70 @@
+# Full Stack Open exercise 11.20
+name: fso-bloglist-pipe
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+env: 
+  DEPLOY: ${{ github.event_name == 'push' && ! contains(toJSON(github.event.commits.*.message), '#skip') }}
+  APP_NAME: fso-bloglist
+
+jobs:
+  env_var: # workaround for env not being available in job context
+    name: Expose DEPLOY to job context
+    runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ env.DEPLOY }}
+      app_name: ${{ env.APP_NAME }}
+    steps:
+      - run: echo "exposing env var DEPLOY=$DEPLOY"
+
+#  e2e-test:
+#    uses: ./.github/workflows/playwright.yml
+
+  unit-test:
+    uses: ./.github/workflows/lint_test.yml
+
+  deploy:    
+    needs: [env_var, unit-test]
+    name: Deploy if ${{ needs.env_var.outputs.deploy }}
+    if: needs.env_var.outputs.deploy == 'true'
+    uses: ./.github/workflows/fly-deploy.yml
+    secrets: 
+      token: ${{ secrets.FLY_API_TOKEN }}
+  
+  tag_release:
+    needs: [env_var, deploy]
+    name: tag if ${{ needs.env_var.outputs.deploy }}
+    if: needs.env_var.outputs.deploy == 'true'
+    uses: ./.github/workflows/tag_release.yml
+
+  notify_success:
+    needs: deploy
+    name: send build success notification to Discord
+    runs-on: ubuntu-latest
+    steps:
+    - uses: sarisia/actions-status-discord@v1
+      with:
+        webhook: ${{ secrets.DISCORD_WEBHOOK }}
+        username: ${{ env.APP_NAME }} build bot
+        title: New ${{ env.APP_NAME }} version deployed
+        description: Go and grab some coffee
+
+  notify_failure:
+    if: failure()
+    needs: deploy
+    name: send build failure notification to Discord
+    runs-on: ubuntu-latest
+    steps:
+    - uses: sarisia/actions-status-discord@v1
+      with:
+        webhook: ${{ secrets.DISCORD_WEBHOOK }}
+        username: ${{ env.APP_NAME }} build bot
+        status: Failure
+        title: Failed to deploy ${{ env.APP_NAME }}
+        description: Go and fix the build

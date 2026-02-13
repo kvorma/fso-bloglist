@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
-const Blog = require('../models/blogList')
-const User = require('../models/user')
-const logger = require('../utils/logger')
+const Blog = require('../src/models/blogList')
+const User = require('../src/models/user')
+const logger = require('../src/utils/logger')
 const initialBlogs = [
   {
     title: 'React patterns',
@@ -45,19 +45,19 @@ const initialUsers = [
   {
     username: 'root',
     realname: 'Superuser',
-    blogs: [ ],
+    blogs: [],
     passwordHash: '$2b$10$SlblZ8Z7.088vyR87.PodOwVgDxKFZop6FkuwjugtDNesN1EtTTPq' // 'sekret'
   },
   {
     username: 'mluukkai',
     realname: 'Matti Luukkainen',
-    blogs: [ ],
+    blogs: [],
     passwordHash: '$2b$10$mBZeXJO7U52NiG22ioY3y.zMzjiQrqqdBUTb5iKJs0xiPCI1pRjMu' // 'salainen'
   },
   {
     username: 'vode',
     realname: 'Kai Vorma',
-    blogs: [ ],
+    blogs: [],
     passwordHash: '$2b$10$AvvuCM9HhpHtlIdf73cdtep6kP5grqM55DSoqP/6ngoN49Z.jpjIi' // 'ei muista'
   }
 ]
@@ -86,7 +86,7 @@ const initTestData = async () => {
   const blogList = await Blog.find({})
   logger.debug2('Initial blogs:', blogList)
   const blogIdList = blogList.map(i => i._id)
-  const blogOwner = await User.findOneAndUpdate ({ username: 'root' }, { blogs: blogIdList })
+  const blogOwner = await User.findOneAndUpdate({ username: 'root' }, { blogs: blogIdList })
   await Blog.updateMany({}, { owner: blogOwner._id })
 }
 
