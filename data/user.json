@@ -1,0 +1,17 @@
+[
+    {
+        "realname": "Superuser",
+        "username": "root",
+        "password": "sekret"
+    },
+    {
+        "realname": "Matti Luukkainen",
+        "username": "mluukkai",
+        "password": "salainen"  
+    },
+    {
+        "realname": "Kai Vorma",
+        "username": "vode",
+        "password": "ei muista"   
+    }
+]
