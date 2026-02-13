@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       deploy: ${{ env.DEPLOY }}
-      app_name: ${{ env.APP_NAME }}      
+      app_name: ${{ env.APP_NAME }} 
     steps:
       - run: echo "exposing env vars"
 
@@ -27,8 +27,9 @@ jobs:
 #    uses: ./.github/workflows/playwright.yml
 
   unit-test:
+    name: Lint and unit test
     uses: ./.github/workflows/lint_test.yml
-
+  
   deploy:    
     needs: [env_var, unit-test]
     name: Deploy if ${{ needs.env_var.outputs.deploy }}
