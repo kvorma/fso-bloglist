@@ -8,10 +8,10 @@ const info = (...params) => {
   if (!config.QUIET) console.log('I:', ...params)
 }
 const debug = (...params) => {
-  if (config.DEBUG >= 1) console.log('D1:', ...params)
+  if (config.DEBUG_LEVEL >= 1) console.log('D1:', ...params)
 }
 const debug2 = (...params) => {
-  if (config.DEBUG >= 2) console.log('D2:', ...params)
+  if (config.DEBUG_LEVEL >= 2) console.log('D2:', ...params)
 }
 
 const error = (...params) => {
