@@ -10,4 +10,5 @@ const PORT = process.env.PORT || 3003
 const MONGODB_URI = test ? process.env.TEST_MONGODB_URI : process.env.MONGODB_URI
 const DEBUG = test ? 0 : process.env.DEBUG || 0
 const QUIET = process.env.QUIET || false
+console.log('DB URI:', MONGODB_URI)
 module.exports = { MONGODB_URI, PORT, DEBUG, QUIET }

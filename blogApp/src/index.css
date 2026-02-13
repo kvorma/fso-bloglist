@@ -1,0 +1,100 @@
+
+
+
+h1 {
+  color: green;
+  font-style: italic;
+}
+
+th, td {
+    padding-left: 0.5em;
+}
+
+input  {
+    margin: 0.25em 0.25em;
+    width: 25em;
+}
+
+button {
+    margin: 0.25em 0em;
+    border-radius: 5px;
+}
+
+.container {
+    position: relative;
+    margin: auto;
+    background-color: lightskyblue;
+    padding: 1em;
+    border: 5px solid black;
+    max-width: 800px
+}
+
+.addBlogLabel {
+    margin-right: 50%;
+}
+
+.addBlogInput {
+    width: 50em;
+    max-width: 95%;
+}
+
+.login  {
+    margin: 0.25em 0.5em;
+    width: 15em;
+}
+
+.logout {
+    position: absolute;
+    right: 1.3em;
+    top: 0.75em;
+    padding: 0.25em
+}
+
+.navBar {
+    width: 100%;
+    margin-top: 0em;
+    background-color: green;
+}
+
+.navBarLink {
+    margin-left: 0.3em;
+    padding: 0.2em 0.2em;
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.navBarLogin {
+    float: right;
+    margin-top: -0.2em;
+    margin-right: 0.3em;
+    padding: 0.2em 0.2em;
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.footer {
+    color: green;
+    font-style: italic;
+}
+
+.error {
+    color: red;
+    background: lightgrey;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.info {
+    color: green;
+    background: lightgrey;
+    font-size: 20px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
