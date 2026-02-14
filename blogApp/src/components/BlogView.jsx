@@ -77,7 +77,7 @@ const BlogView = () => {
         <a href={blog.url}>{blog.url}</a>
       </div>
       <div>
-        {blog.likes} likes
+        {blog.likes} likes{' '}
         <button onClick={() => handleLike()}>like</button>
         {auth?.state?.username === blog.owner.username && (
           <button onClick={() => handleDelete()}>delete</button>

@@ -6,11 +6,11 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Full Stack Open course 2015 -- exercise 7.21</h1>
+      <h1>Full Stack Open course 2025 -- exercise 7.21</h1>
       <hr></hr>
       {!loggedIn(auth) && (
         <div>
-          Please <a href="/login">login</a> to have full functionality{' '}
+          <a href="/login">Please login to have full functionality</a>
         </div>
       )}
       <h2>Latest blogs</h2>

@@ -20,9 +20,9 @@ const Users = () => {
       </div>
     )
   }
-  if (allBlogs.data) {
+  if (allBlogs?.data.length) {
     for (const blog of allBlogs.data) {
-      if (stats[blog.owner.realname] === undefined) {
+      if (stats[blog.owner?.realname] === undefined) {
         stats[blog.owner.realname] = {
           realname: blog.owner.realname,
           count: 1,
