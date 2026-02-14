@@ -25,6 +25,8 @@ jobs:
 
   e2e-test:
     uses: ./.github/workflows/playwright.yml
+    secrets:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
   unit-test:
     needs: e2e-test # Both tests modify the same test data, so run them sequentially
