@@ -1,5 +1,3 @@
-//const { test, expect, beforeEach, describe } = require('@playwright/test')
-//const { login, logout, addBlog, addAllBlogs, like } = require('./helper')
 import { test, expect } from '@playwright/test'
 import { login, logout, gotoPage, addBlog, gotoBlog, addAllBlogs, like } from './helper'
 
@@ -35,7 +33,7 @@ test.describe('Blog app', () => {
       })
     }
 
-    await page.goto('http://localhost:5173')
+    await page.goto('/')
   })
 
   test('Front page is shown', async ({ page }) => {

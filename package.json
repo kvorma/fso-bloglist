@@ -10,6 +10,7 @@
     "start": "NODE_ENV=production node index.js",
     "dev": "NODE_ENV=development node --watch index.js",
     "test": "NODE_ENV=test PORT=3004 node --test --test-concurrency=1",
+    "test:e2e": "NODE_ENV=test PORT=3004 CI=yes ./ci_run_e2e_tests.sh",
     "start:test": "NODE_ENV=test PORT=3004 node --watch index.js",
     "lint": "eslint .",
     "lintfix": "eslint --fix ."

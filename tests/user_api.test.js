@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const supertest = require('supertest')
 const app = require('../src/app')
 const helper = require('./test_helper')
-const User = require('../src/models/user')
+//const User = require('../src/models/user')
 const config = require('../src/utils/config')
 const api = supertest(app)
 
@@ -14,8 +14,7 @@ before(() => {
 })
 
 beforeEach(async () => {
-  await User.deleteMany({})
-  await User.insertMany(helper.initialUsers)
+  await helper.initTestData()
 })
 
 describe('userApi: First some generic consistency checks..', () => {

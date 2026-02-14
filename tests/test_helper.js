@@ -84,7 +84,6 @@ const initTestData = async () => {
   // set ownership of all blogs to "root"
 
   const blogList = await Blog.find({})
-  logger.debug2('Initial blogs:', blogList)
   const blogIdList = blogList.map(i => i._id)
   const blogOwner = await User.findOneAndUpdate({ username: 'root' }, { blogs: blogIdList })
   await Blog.updateMany({}, { owner: blogOwner._id })

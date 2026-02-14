@@ -1,4 +1,3 @@
-//const { expect } = require('@playwright/test')
 import { expect } from '@playwright/test'
 
 const login = async (page, username, password, realname = null) => {

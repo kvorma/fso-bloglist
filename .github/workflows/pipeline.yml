@@ -23,10 +23,11 @@ jobs:
     steps:
       - run: echo "exposing env vars"
 
-#  e2e-test:
-#    uses: ./.github/workflows/playwright.yml
+  e2e-test:
+    uses: ./.github/workflows/playwright.yml
 
   unit-test:
+    needs: e2e-test # Both tests modify the same test data, so run them sequentially
     name: Lint and unit test
     uses: ./.github/workflows/lint_test.yml
     secrets:
