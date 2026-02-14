@@ -21,15 +21,15 @@ const BlogList = ({ view }) => {
   const shown = view === 'full' ? blogs : blogs.splice(-5)
 
   return (
-    <div>
+    <ul>
       {shown.map((blog) => (
-        <div key={blog.id}>
+        <li key={blog.id}>
           <a href={'/blogs/' + blog.id}>{blog.title}</a>
           <em> by {blog.author}</em>
-        </div>
+        </li>
       ))}
       {view === 'full' && <button onClick={handleSort}>{sortButton}</button>}
-    </div>
+    </ul>
   )
 }
 

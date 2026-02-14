@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:test": "PORT=3004 vite build",
     "lint": "eslint .",
     "lintfix": "eslint --fix .",
-    "preview": "vite preview",
+    "preview:": "vite preview",
+    "preview:test": "PORT=3004 vite preview",
     "start:test": "PORT=3004 vite",
     "test:e2e": "playwright test --workers=1",
     "test:e2e-ui": "playwright test --ui --workers=1",

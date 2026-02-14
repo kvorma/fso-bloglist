@@ -1,13 +1,16 @@
 //const { expect } = require('@playwright/test')
 import { expect } from '@playwright/test'
 
-const login = async (page, username, password) => {
+const login = async (page, username, password, realname = null) => {
   const loginLink = page.getByText('Please login to have full functionality')
   await loginLink.click()
   await page.waitForURL('**/login')
   await page.getByLabel('username').fill(username)
   await page.getByLabel('password').fill(password)
   await page.getByRole('button', { name: 'login' }).click()
+  if (realname) {
+    await expect(page.getByText(`${realname} logged in`)).toBeVisible()
+  }
 }
 
 const logout = async (page) => {
@@ -36,7 +39,6 @@ const like = async (page, blog) => {
   const key = blog.title
 
   const likes = await page.getByText(/^\d+ likes/).textContent()
-  console.log('likes: ', likes)
   const num = Number(likes.match(/^\d+/)[0]) + 1
 
   await page.getByRole('button', { name: 'like', exact: true }).click()
