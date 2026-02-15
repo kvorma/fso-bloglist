@@ -10,7 +10,7 @@ on:
     types: [opened, synchronize]
 
 env: 
-  DEPLOY: ${{ github.event_name == 'push' && ! contains(toJSON(github.event.commits.*.message), '#skip') }}
+  DEPLOY: ${{ github.event_name == 'push' && ! contains(github.event.head_commit.message, '#skip') }}
   APP_NAME: fso-bloglist
 
 jobs:
