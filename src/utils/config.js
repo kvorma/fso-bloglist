@@ -15,12 +15,15 @@ if (process.env.GITHUB_ACTIONS) {
   dx.config({ path: '.env', quiet: true })
 }
 
-const PORT = process.env.PORT || 3003
+const PORT = test ? process.env.PORT_TEST : process.env.PORT
 const MONGODB_URI = process.env.MONGODB_URI + db
-const DEBUG_LEVEL = test ? 0 : process.env.DEBUG_LEVEL || 0
-const QUIET = test ? true : process.env.QUIET || false
+const DEBUG_LEVEL = process.env.DEBUG_OVERRIDE || (test ? 0 : process.env.DEBUG_LEVEL) || 0
+const QUIET = (test ? true : process.env.QUIET) || false
 if (DEBUG_LEVEL > 0) {
   console.log('Config loaded:', { NODE_ENV: process.env.NODE_ENV, test, MONGODB_URI, PORT, DEBUG_LEVEL, QUIET })
 }
-
+if (!MONGODB_URI || !PORT) {
+  console.error('Error: Missing required environment variables. Please check your .env file.')
+  process.exit(1)
+}
 module.exports = { MONGODB_URI, PORT, DEBUG_LEVEL, QUIET }

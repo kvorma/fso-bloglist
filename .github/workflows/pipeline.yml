@@ -23,18 +23,19 @@ jobs:
     steps:
       - run: echo "exposing env vars"
 
-  e2e-test:
-    uses: ./.github/workflows/playwright.yml
-    secrets:
-      MONGODB_URI: ${{ secrets.MONGODB_URI }}
-
   unit-test:
-    needs: e2e-test # Both tests modify the same test data, so run them sequentially
     name: Lint and unit test
     uses: ./.github/workflows/lint_test.yml
     secrets:
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
-  
+
+  e2e-test:
+    needs: unit-test # Both tests modify the same test data, so run them sequentially
+    name: Playwright tests
+    uses: ./.github/workflows/playwright.yml
+    secrets:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+     
   deploy:    
     needs: [env_var, unit-test]
     name: Deploy if ${{ needs.env_var.outputs.deploy }}
