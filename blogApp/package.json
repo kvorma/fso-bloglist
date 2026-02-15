@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:test": "PORT=3004 vite build",
     "lint": "eslint .",
     "lintfix": "eslint --fix .",
     "preview:": "vite preview",

@@ -16,7 +16,7 @@ echo "Backend is ready. Starting frontend..."
 
 # Build the frontend and run in the background
 cd blogApp
-npm run build:test
+npm run build
 npm run preview:test &
 
 # Wait for the frontend to be ready
