@@ -3,6 +3,7 @@
 // (c) 2025 Kai Vorma
 
 const express = require('express')
+const path = require('path')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const config = require('./utils/config')
@@ -28,7 +29,9 @@ mongoose
     process.exit(1)
   })
 
-app.use(express.static('dist'))
+app.use('/', express.static('blogApp/dist'))
+app.use('/users', express.static('blogApp/dist'))
+app.use('/blogs', express.static('blogApp/dist'))
 app.use(express.json())
 app.use(middleware.requestLogger)
 app.use('/api/blogs', blogsRouter)
@@ -38,6 +41,16 @@ if (process.env.NODE_ENV === 'test') {
   const testingRouter = require('./controllers/testing')
   app.use('/api/testing', testingRouter)
 }
+
+app.use(express.static('build'))
+const indexPath = path.resolve(process.cwd(), 'build', 'index.html')
+app.get('/blogs', (req, res) => res.sendFile(indexPath))
+app.get('/blogs/add', (req, res) => res.sendFile(indexPath))
+app.get('/blogs/:id', (req, res) => res.sendFile(indexPath))
+app.get('/users', (req, res) => res.sendFile(indexPath))
+app.get('/users/:id', (req, res) => res.sendFile(indexPath))
+app.get('/login', (req, res) => res.sendFile(indexPath))
+
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 

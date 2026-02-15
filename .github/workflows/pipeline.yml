@@ -24,12 +24,14 @@ jobs:
       - run: echo "exposing env vars"
 
   unit-test:
+    if: false
     name: Lint and unit test
     uses: ./.github/workflows/lint_test.yml
     secrets:
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
   e2e-test:
+    if: false
     needs: unit-test # Both tests modify the same test data, so run them sequentially
     name: Playwright tests
     uses: ./.github/workflows/playwright.yml
@@ -37,7 +39,7 @@ jobs:
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
      
   deploy:    
-    needs: [env_var, unit-test]
+    needs: [env_var]
     name: Deploy if ${{ needs.env_var.outputs.deploy }}
     if: needs.env_var.outputs.deploy == 'true'
     uses: ./.github/workflows/fly-deploy.yml

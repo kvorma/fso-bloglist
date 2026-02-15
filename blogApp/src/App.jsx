@@ -40,7 +40,7 @@ const App = () => {
     setSession(auth)
   }, [])
 
-  console.log('App.render()', auth)
+  //console.log('App.render()', auth)
 
   return (
     <div className="container">
