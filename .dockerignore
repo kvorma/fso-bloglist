@@ -6,3 +6,6 @@
 Dockerfile
 fly.toml
 /blogApp
+/data
+/tests
+/script
