@@ -22,4 +22,3 @@ export default defineConfig({
     setupFiles: './testSetup.js',
   }
 })
-console.info('Vite connected to backend at port', process.env.PORT || 3003)
